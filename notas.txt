@@ -1,0 +1,4 @@
+Crear el proyecto: ng new mercadona
+De las opciones que aparecen para hojas de estilo he seleccionado la primera css
+Con Visual Studio Code he habierto la carpeta (File -> abrir carpeta)
+Tened abierta una o varias ventanas Terminal (las que os hagan falta, es la ventana de comandos, también se pueden abrir otras)
