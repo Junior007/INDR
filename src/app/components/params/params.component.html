@@ -1,0 +1,25 @@
+<div>
+  <table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <td>descripcion</td>
+        <td>aplicacion</td>
+        <td>requerido</td>
+        <td>env</td>
+        <td>value</td>
+        <td>nombre</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let param of params">
+        <td>{{ param.descripcion }}</td>
+        <td>{{ param.aplicacion }}</td>
+        <td>{{ param.requerido  }}</td>
+        <td>{{ param.env  }}</td>
+        <td>{{ param.value }}</td>
+        <td>{{ param.nombre }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

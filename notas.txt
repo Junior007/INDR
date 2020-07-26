@@ -1,4 +1,100 @@
 Crear el proyecto: ng new mercadona
+
 De las opciones que aparecen para hojas de estilo he seleccionado la primera css
-Con Visual Studio Code he habierto la carpeta (File -> abrir carpeta)
+
+Con Visual Studio Code he habierto la carpeta mercadona que se ha creado (File -> abrir carpeta)
+
 Tened abierta una o varias ventanas Terminal (las que os hagan falta, es la ventana de comandos, también se pueden abrir otras)
+
+Antes de poder lanzar la aplicación se ha de descargar todas las librerías de angular del proyecto, en la ventana de terminal lanzad el comando npm install, empezará a descargarse todos los paquetes. 
+
+Para lanzar la aplicación, en la ventana terminal escribid ng serve (hay otras opciones, tambien dependiente de si se lanza en algún otro servidor web en vez del nodejs)
+
+Yo soy de bootstrap para estilos, pero ¿vamos a probar angular material como estilos para la aplicación? --> vamos viendo
+
+En el proyecto que ha creado angular cli, nuestros componentes, servicios, etc, irán en la carpeta app. Aquí dentro  he creado una carpeta service donde iran los componentes que hagan todo el negocio y comunicación con el servidor.
+
+Los servicios y demás no hará falta crearlos con comandos desde la terminal, pero se puede hacer. José ya os pasó una lista de plugins, creo que es completa. Hay uno que da aspecto a las carpetas (icon material) y creo que hay otro que muestra los menús contextuales para las acciones: pinchando en una carpeta con botón derecho aparecerá las opciones: generate component, module, service, pipe, etc. Si no ya el lunes miro a ver los plugins que tengo yo en el Code. La elección de Code o Atom es vuestra por que al final es indiferente, yo rpefiero Code por que ya estoy habituado.
+
+Por como he trabajado yo, en la carpeta services voy creando carpetas para cada uno de los servicios (se crean cada uno en sucarpeta al clicar botón derecho, generate service). Los servicios tienen dos ficheros: el propio del servicio y uno para pruebas unitarias. Nos centramos en el primero. Creo la carpeta params y botón derecho generate service y de nombre params-service.
+
+
+Creo también una carpeta models donde ir colocando toda la definición de datos, como el primer ejemplo el json tenía la propiedad params, creo dentro un interface "param"
+
+creo otra carptea components, aquí iran nuestros elementos visuales con los que interaccionará el usuario. Creamos uno inicial, params, para mostrar los parámetros. De momento lo creamos, no tendrá nada, y haremos que sea visible en la vista y después que haga uso de nuestro servicio para recoger la lista de parámetros.
+
+Para mostrar mis controles: solo tengo una página en realidad en el proyecto que es index.html. Ésta es la que siempre se carga y todo sucede en ella. Sobre ella es sobre la que se cargan los otros componentes y aquí se ha de mostrar el nuestro. Vamos ya previendo como va a quedar la navegación: voy a crear un componente nav donde meteremos el menú y un componente home con la vista inicial a la carga de la página y vamos viendo como mostrar elementos y preparar la navegación.
+
+1. En la carptea app hay una vista que es app.component.html, borro lo que me ha creado angular/cli y coloco el tag de mi componente. Veo que da un error, hay que referenciarlo. Veremos que siempre vamos a tener que estar referenciándolo todo por que angular hace DI (inyección de código) bastará poner una referecia en cun cosntructor para que sepa el framework que objeto (servicio generalmente) quiere usar un componente. Para que se vea nuestro primer componente nav vamos a referenciarlo en
+
+app/app.moduel.ts importando el componente
+
+import { NavComponent } from './components/nav/nav.component';
+
+
+y con la línea:
+
+  declarations: [
+      NavComponent,
+
+	{todos los que vayamos creando los iremos poniendo aquí}
+   ],
+
+
+Así nos queda app.component.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NavComponent } from './components/nav/nav.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+Ya podemos ponerle en nuestro componente para el menú los elementos que queramos. De momento un enlace al grid de parametros.Para que el enlace cargue el componente que corresponda hay que relacionar la ruta url con el componente, esto es, preparar el routing
+
+En el módulo app/app-routing.module.ts es donde hemos de referenciar todas nuestras rutas con el componente que hemos de cargar.
+
+
+En el componente "params" ya he creado una tabla de html y un bucle que va a recorrer los params que recoja el servidor, pero el componente no será el encargado de recogerlos, si no que inyectaremos params.service, para lo que, como todo el rato estaremos haciendo, tenemos que referenciarlo en app.component.ts. Es cuestión de romper mano y acostumbrarse, ya iréis viendo que se vuelve una rutina mecánica el hacerlo.
+
+En el servicion params lo primero que se verá es una serie de librerias que nos sirven para hacer peticiones al servidor y al que contiene la clase observabel, que es lo que devuelve nuestra etición (ajax) al servidor y es el que tendremos que manejar. El observable se encarga de eso, observar la petición y notificar cambios.
+
+import { HttpClient } from '@angular/common/http';
+import { Param } from '../../models/param';
+import { Observable } from 'rxjs';
+
+Comenté la referencia del servicio en el proyecto: id a app.module.ts y ahí lo tenéis:
+
+En la cabecera se importa:
+
+import { ParamsService } from './services/params/params.service';
+
+
+Y en los provedoores se referencia:
+
+  providers: [
+    ParamsService
+  ],
+
+
+En el componente de params veis como: se importa la libreria del servicio y la del modelo, se inyecta en el constructor el servicio, se usa en el evento ngOnInit para recuperar los datos del servidor. Recodaba que el getParams() del servicio devolvía un Observable, por lo que tenemos que "Suscrirnos), invocar. Subscribe con una espresión lambda que es a al que se llamará cuando los datos estén disponibles. Hay una opción para los errores también.
+
+
+Os lo he contado más o menos como lo he hecho. Yo me voy a crear una pequeña aplicación Web Api que me devuelva el json, las urls tendremos que configurarlas para las entornos en ficheros de configuración y a mí, lo que me gusta, es crear interceptor de las peticiones al servidor que es el que termina de construir la ur y dejar las llamadas en el servicio sencilla. Esto ya iremos viéndolo, que creo que ya es suficiente con el rollazo que os he contado.
+
+
+
