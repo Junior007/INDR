@@ -71,7 +71,7 @@ En el módulo app/app-routing.module.ts es donde hemos de referenciar todas nues
 
 En el componente "params" ya he creado una tabla de html y un bucle que va a recorrer los params que recoja el servidor, pero el componente no será el encargado de recogerlos, si no que inyectaremos params.service, para lo que, como todo el rato estaremos haciendo, tenemos que referenciarlo en app.component.ts. Es cuestión de romper mano y acostumbrarse, ya iréis viendo que se vuelve una rutina mecánica el hacerlo.
 
-En el servicion params lo primero que se verá es una serie de librerias que nos sirven para hacer peticiones al servidor y al que contiene la clase observabel, que es lo que devuelve nuestra etición (ajax) al servidor y es el que tendremos que manejar. El observable se encarga de eso, observar la petición y notificar cambios.
+En el servicio params lo primero que se verá es una serie de librerias que nos sirven para hacer peticiones al servidor y al que contiene la clase observabel, que es lo que devuelve nuestra etición (ajax) al servidor y es el que tendremos que manejar. El observable se encarga de eso, observar la petición y notificar cambios.
 
 import { HttpClient } from '@angular/common/http';
 import { Param } from '../../models/param';
@@ -94,7 +94,20 @@ Y en los provedoores se referencia:
 En el componente de params veis como: se importa la libreria del servicio y la del modelo, se inyecta en el constructor el servicio, se usa en el evento ngOnInit para recuperar los datos del servidor. Recodaba que el getParams() del servicio devolvía un Observable, por lo que tenemos que "Suscrirnos), invocar. Subscribe con una espresión lambda que es a al que se llamará cuando los datos estén disponibles. Hay una opción para los errores también.
 
 
+He encontrado algún problema con el routing y directivas de angular qeu faltaban, más adelante lo comentaremos porque tiene que ver cono como referenciamos los componentes en app routing module y en app module 
+
 Os lo he contado más o menos como lo he hecho. Yo me voy a crear una pequeña aplicación Web Api que me devuelva el json, las urls tendremos que configurarlas para las entornos en ficheros de configuración y a mí, lo que me gusta, es crear interceptor de las peticiones al servidor que es el que termina de construir la ur y dejar las llamadas en el servicio sencilla. Esto ya iremos viéndolo, que creo que ya es suficiente con el rollazo que os he contado.
+
+
+26/07/2020
+
+Estoy preparando una version con materiasl, al final ¿parece fácila? fácil de usar por que con linea de comando nos podemos crear un ejempolo que luego usaremos en nuestro código, ver la referencia aquí:
+
+
+https://material.angular.io/guide/schematics
+
+
+Previamente se tiene que haber instalado angular materials
 
 
 
