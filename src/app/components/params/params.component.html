@@ -1,50 +1,57 @@
+<div class="params">
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4" class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Usuario</span>
-      </div>
-      <input type="text" class="form-control" placeholder="Username">
-    </div>
+  <button type="button" class="btn btn-primary">Nuevo</button>
 
-    <div class="col-sm-4" class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Contraseña</span>
-      </div>
-      <input type="text" class="form-control" placeholder="Password">
-    </div>
-    <div class="col-sm-4">
-      <button type="button" class="btn btn-primary">Almacenar</button>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td></td>
+        <td>descripcion</td>
+        <td>aplicacion</td>
+        <td>requerido</td>
+        <td>env</td>
+        <td>value</td>
+        <td>nombre</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let param of params">
+        <td>
+          <span class='icon' (click)="modalForEdit()"><i class="fa fa-edit"></i></span>
+          <span class='icon' (click)="modalForDelete()"><i class="fa fa-trash"></i></span>
+        </td>
+        <td>{{ param.descripcion }}</td>
+        <td>{{ param.aplicacion }}</td>
+        <td>{{ param.requerido  }}</td>
+        <td>{{ param.env  }}</td>
+        <td>{{ param.value }}</td>
+        <td>{{ param.nombre }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- Trigger/Open the Modal -->
+<button onclick="document.getElementById('id01').style.display='block'" class="w3-button">Open Modal</button>
 
-<div class="row">
-  <div class="col-sm">
-    <table class="table">
-      <thead>
-        <tr>
-          <td>descripcion</td>
-          <td>aplicacion</td>
-          <td>requerido</td>
-          <td>env</td>
-          <td>value</td>
-          <td>nombre</td>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let param of params">
-          <td>{{ param.descripcion }}</td>
-          <td>{{ param.aplicacion }}</td>
-          <td>{{ param.requerido  }}</td>
-          <td>{{ param.env  }}</td>
-          <td>{{ param.value }}</td>
-          <td>{{ param.nombre }}</td>
-        </tr>
-      </tbody>
-    </table>
+<!-- Modal -->
+<div style="positon:absolute" *ngIf="showModal()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="edit">
+        <app-params></app-params>
+      </div>
+      <div class="modal-body" *ngIf="delete">
+        hola
+      </div>
+    </div>
   </div>
 </div>

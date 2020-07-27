@@ -12,6 +12,10 @@ export class ParamsComponent implements OnInit {
 
   params: Param[];
 
+
+  edit = false;
+  delete = false;
+
   constructor(private paramsService: ParamsService) { }
 
   ngOnInit() {
@@ -19,5 +23,20 @@ export class ParamsComponent implements OnInit {
       data => this.params = data,
     );
   }
+  modalForEdit() {
+    this.edit = true;
+    this.delete = false;
+  }
+
+  modalForDelete() {
+    this.edit = false;
+    this.delete = true;
+
+  }
+  showModal(): boolean{
+    return (this.edit || this.delete);
+
+  }
+
 
 }

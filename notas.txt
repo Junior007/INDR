@@ -99,15 +99,18 @@ He encontrado algún problema con el routing y directivas de angular qeu faltaba
 Os lo he contado más o menos como lo he hecho. Yo me voy a crear una pequeña aplicación Web Api que me devuelva el json, las urls tendremos que configurarlas para las entornos en ficheros de configuración y a mí, lo que me gusta, es crear interceptor de las peticiones al servidor que es el que termina de construir la ur y dejar las llamadas en el servicio sencilla. Esto ya iremos viéndolo, que creo que ya es suficiente con el rollazo que os he contado.
 
 
-26/07/2020
+Aparcamos versiónb con materials por falta de tiempo.
 
-Estoy preparando una version con materiasl, al final ¿parece fácila? fácil de usar por que con linea de comando nos podemos crear un ejempolo que luego usaremos en nuestro código, ver la referencia aquí:
+Me descargo la versión 7 de awsome y referencio a mano
+
+Separo componenete de login y lo coloco debajo de la barra de navegación, iyectaré en él el servicio de login.
 
 
-https://material.angular.io/guide/schematics
+Preparo iconos en el grid: editar, eliminar
+Nuevo lo dejo en la parte inferior
+Preparando componentes: mensaje borrar, editar parámetro
 
-
-Previamente se tiene que haber instalado angular materials
+Ventanas modales con bootstrap (no mola, pero intentaremos no salirnos de angular que es lo ideal)
 
 
 
