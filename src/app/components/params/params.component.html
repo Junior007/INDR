@@ -1,44 +1,50 @@
+
 <div class="container">
   <div class="row">
-    <div class="col-sm">Usuario
+    <div class="col-sm-4" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Usuario</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username">
     </div>
-    <div class="col-sm"><input type="text" class="form-control" placeholder="Username">
+
+    <div class="col-sm-4" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Contraseña</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Password">
     </div>
-    <div class="col-sm">Contraseña
-    </div>
-    <div class="col-sm"><input type="text" class="form-control" placeholder="Password">
-    </div>
-    <div class="col-sm">
+    <div class="col-sm-4">
       <button type="button" class="btn btn-primary">Almacenar</button>
     </div>
-
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-sm">
-      <table class="table">
-        <thead>
-          <tr>
-            <td>descripcion</td>
-            <td>aplicacion</td>
-            <td>requerido</td>
-            <td>env</td>
-            <td>value</td>
-            <td>nombre</td>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let param of params">
-            <td>{{ param.descripcion }}</td>
-            <td>{{ param.aplicacion }}</td>
-            <td>{{ param.requerido  }}</td>
-            <td>{{ param.env  }}</td>
-            <td>{{ param.value }}</td>
-            <td>{{ param.nombre }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="row">
+  <div class="col-sm">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>descripcion</td>
+          <td>aplicacion</td>
+          <td>requerido</td>
+          <td>env</td>
+          <td>value</td>
+          <td>nombre</td>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let param of params">
+          <td>{{ param.descripcion }}</td>
+          <td>{{ param.aplicacion }}</td>
+          <td>{{ param.requerido  }}</td>
+          <td>{{ param.env  }}</td>
+          <td>{{ param.value }}</td>
+          <td>{{ param.nombre }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
