@@ -13,7 +13,7 @@ export class ParamsService {
   }
       //
     getParams(): Observable<Param[]> {
-      return this.http.get<Param[]>('http://localhost:56310/api/Params');
+      return this.http.get<Param[]>('Params');
       // .pipe(map((data: any[]) => data.map((item: any) => new Value(item.id, item.name))));
     }
   }

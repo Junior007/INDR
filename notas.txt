@@ -110,7 +110,24 @@ Preparo iconos en el grid: editar, eliminar
 Nuevo lo dejo en la parte inferior
 Preparando componentes: mensaje borrar, editar parámetro
 
-Ventanas modales con bootstrap (no mola, pero intentaremos no salirnos de angular que es lo ideal)
+Instalando ngx-bootstrap para usar ventanas modales y otros componentes:
+
+https://valor-software.com/ngx-bootstrap/#/documentation#getting-started
+
+
+Prueba de abrir ventanas modales
+
+
+Agregados interceptores de security
+
+Una cosa que no os he comentado, podeis depurar el código, hay que tener abierta la ventana del navegador del programador (f12) y previamente haber puesto en el codigo:
+
+debugger;
+
+
+Es una instrucción obsoleta pero sigue funcionando
+
+Colocado el servicio de logín, a inyectar en el componente de login
 
 
 

@@ -4,6 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+// INTERCEPTORES
+import { UrlInterceptorProvider } from './interceptors/url/url.interceptor';
+import { SecurityInterceptorProvider } from './interceptors/security/security.interceptor';
+
+
+// COMPONENTES NGX-BOOTSTRAP
+import { ModalModule} from 'ngx-bootstrap/modal';
 
 // IMPORTAMOS COMPONENTES
 import { NavComponent } from './components/nav/nav.component';
@@ -12,12 +19,14 @@ import { ParamComponent } from './components/param/param.component';
 import { DeleteMessageComponent } from './components/deleteMessage/deleteMessage.component';
 
 // IMPORTAMOS SERVICIOS
+import { EnvironmentService } from 'src/app/services/environment/environment.service';
 import { ParamsService } from './services/params/params.service';
-import { LoginService } from './services/login/login.service';
+import { AuthService } from './services/auth/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
+    // MIS COMPONENTES
     AppComponent,
     NavComponent,
     LoginComponent,
@@ -25,14 +34,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DeleteMessageComponent
   ],
   imports: [
+    // NGX BOOTSTRAP
+    ModalModule.forRoot(),
+    //  
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ModalModule,
   ],
   providers: [
+    // MIS SERVICIOS
+    EnvironmentService, // para mantener variables de entorno que me puedan ser necesarias
     ParamsService,
-    LoginService
+    AuthService,
+    UrlInterceptorProvider,
+    SecurityInterceptorProvider,
+    // ErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent]
 })
