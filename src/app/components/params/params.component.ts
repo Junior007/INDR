@@ -16,6 +16,10 @@ import { Param } from 'src/app/models/param';
 export class ParamsComponent implements OnInit {
 
 
+  newItem: boolean = false;
+  edit: boolean = false;
+  delete: boolean = false;
+
   paramsPage: Param[];
   itemsPerPage: number = 10; //items por página
   maxSize: number = 10; //numero de botones de página visibles
@@ -24,6 +28,8 @@ export class ParamsComponent implements OnInit {
   selectedParam: Param;
 
   bsModalRef: BsModalRef;
+
+  messageForDelete: string;
 
   constructor(private paramsService: ParamsService, private modalService: BsModalService) { }
 
@@ -38,11 +44,18 @@ export class ParamsComponent implements OnInit {
   }
   modalForNew(template: TemplateRef<any>): void {
 
-    // this.selectedParam 
+    this.newItem = true;
+    this.edit = false;
+    this.delete = false;
 
     this.bsModalRef = this.modalService.show(template);
   }
   modalForEdit(paramForEdit: Param, template: TemplateRef<any>): void {
+
+    this.newItem = false;
+    this.edit = true;
+    this.delete = false;
+
 
     this.selectedParam = paramForEdit;
 
@@ -50,6 +63,13 @@ export class ParamsComponent implements OnInit {
   }
 
   modalForDelete(paramForDelete: Param, template: TemplateRef<any>): void {
+
+    this.newItem = false;
+    this.edit = false;
+    this.delete = true;
+
+
+    this.messageForDelete = 'Se va a borrar el parámetro' + paramForDelete.descripcion;
 
     this.selectedParam = paramForDelete;
 

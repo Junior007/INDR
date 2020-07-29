@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Param } from 'src/app/models/param';
-
+import { ParamsService } from 'src/app/services/params/params.service';
 
 @Component({
   selector: 'app-param',
@@ -9,11 +9,12 @@ import { Param } from 'src/app/models/param';
 })
 export class ParamComponent implements OnInit {
   @Input() param: Param;
+  @Input() edit: boolean;
+  
 
+  constructor(private paramsService: ParamsService) {
 
-  constructor() {
-
-    if (!this.param) {// si no me viene el parámetor de entrada lo inicializo para que no falle la vista
+    if (!this.param) {// si no me viene el parámetro de entrada lo inicializo para que no falle la vista
       this.param = {
         descripcion: '',
         aplicacion: '',
@@ -27,10 +28,13 @@ export class ParamComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    
+  }
 
-
-
+  ngOnChanges(changes: SimpleChanges): void {
+    
   }
 
 }
+

@@ -43,7 +43,8 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-param (param)="selectedParam"></app-param>
+    <app-param [param]='selectedParam' [edit]='edit' *ngIf='newItem || edit '></app-param>
+    <app-delete [message]='messageForDelete' *ngIf='delete'></app-delete>
   </div>
 </ng-template>
 

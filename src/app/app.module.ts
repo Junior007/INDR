@@ -17,8 +17,7 @@ import { ModalModule} from 'ngx-bootstrap/modal';
 // IMPORTAMOS COMPONENTES
 import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
-import { ParamComponent } from './components/param/param.component';
-import { DeleteMessageComponent } from './components/deleteMessage/deleteMessage.component';
+
 
 // IMPORTAMOS SERVICIOS
 import { EnvironmentService } from 'src/app/services/environment/environment.service';
@@ -32,13 +31,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     NavComponent,
     LoginComponent,
-    ParamComponent,
-    DeleteMessageComponent
+
   ],
   imports: [
     // NGX BOOTSTRAP
     ModalModule.forRoot(),
-    //  
     // RouterModule,
     AppRoutingModule,
     BrowserModule,

@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 // NGX-BOOTSTRAP
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
-// COMPONENTES
+// COMPONENTES DE LA NAVEGACIÓN
 import { HomeComponent } from './components/home/home.component';
 import { ParamsComponent } from './components/params/params.component';
+
+
+// OTROS QUE SE USAN EN EL MÓDULO DE ROUTING
+import { ParamComponent } from './components/param/param.component';
+import { DeleteComponent } from './components/delete/delete.component';
 
 const routes: Routes = [
 
@@ -31,9 +37,9 @@ const routes: Routes = [
 
 @NgModule({
 
-  declarations: [     HomeComponent, ParamsComponent
+  declarations: [     HomeComponent, ParamsComponent, ParamComponent, DeleteComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), PaginationModule.forRoot()],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes), PaginationModule.forRoot()],
   exports: [ RouterModule]
 })
 export class AppRoutingModule { }

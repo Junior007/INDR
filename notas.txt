@@ -129,5 +129,10 @@ Es una instrucción obsoleta pero sigue funcionando
 
 Colocado el servicio de logín, a inyectar en el componente de login
 
+Preparada la ventana modal de edicione de parámetros.
+Paginación del grid
+Ejemplo de parámetros de entrada al componente [param]="selectedParam"
+Envío de datos al servidor (Actualización/Creación de parámetros)
+
 
 
