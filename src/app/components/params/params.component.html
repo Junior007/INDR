@@ -1,6 +1,6 @@
 <div class="params">
 
-  <button type="button" class="btn btn-primary">Nuevo</button>
+  <button type="button" class="btn btn-primary" (click)="modalForNew( template)">Nuevo</button>
 
   <table class="table table-striped">
     <thead>
@@ -16,10 +16,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let param of params">
+      <tr *ngFor="let param of paramsPage">
         <td>
-          <span class='icon' (click)="modalForEdit()"><i class="fa fa-edit"></i></span>
-          <span class='icon' (click)="modalForDelete()"><i class="fa fa-trash"></i></span>
+          <span class='icon' (click)="modalForEdit(param, template)"><i class="fa fa-edit"></i></span>
+          <span class='icon' (click)="modalForDelete(param, template)"><i class="fa fa-trash"></i></span>
         </td>
         <td>{{ param.descripcion }}</td>
         <td>{{ param.aplicacion }}</td>
@@ -30,5 +30,20 @@
       </tr>
     </tbody>
   </table>
+  <pagination [totalItems]="params.length" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 </div>
+
+
+<!-- MODAL PARA LA EDICIÓN O NUEVO PARAMETRO -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-param (param)="selectedParam"></app-param>
+  </div>
+</ng-template>
 
