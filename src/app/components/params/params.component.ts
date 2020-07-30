@@ -96,7 +96,15 @@ export class ParamsComponent implements OnInit {
 
   deleteParam(): void{
     debugger;
-    this.paramsService.deleteParams(this.selectedParam);
+    this.paramsService.deleteParams(this.selectedParam).subscribe(
+      data => {
+        debugger;
+        let dataReturned = data;
+
+      },error => {
+          // do something
+      }
+    );
   }
 
   acceptedCreateOrUpdate(){

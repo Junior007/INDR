@@ -30,7 +30,7 @@
       </tr>
     </tbody>
   </table>
-  <pagination [totalItems]="params.length" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+  <pagination [totalItems]="params?params.length:0" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 </div>
 
 

@@ -9,11 +9,16 @@ import { EnvironmentService } from 'src/app/services/environment/environment.ser
 export class UrlInterceptor implements HttpInterceptor {
   constructor(private env: EnvironmentService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+debugger;
     const baseUrl = this.env.baseUrl();
     const apiReq = req.clone({ url: baseUrl + req.url});
+
+    console.log('url: ' + apiReq.url);
+
+
     return next.handle(apiReq);
 
+    
   }
 }
 //
