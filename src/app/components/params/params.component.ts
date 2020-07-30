@@ -43,6 +43,8 @@ export class ParamsComponent implements OnInit {
     );
   }
   modalForNew(template: TemplateRef<any>): void {
+    
+    debugger;
 
     this.newItem = true;
     this.edit = false;
@@ -51,6 +53,8 @@ export class ParamsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(template);
   }
   modalForEdit(paramForEdit: Param, template: TemplateRef<any>): void {
+
+    debugger;
 
     this.newItem = false;
     this.edit = true;
@@ -64,6 +68,8 @@ export class ParamsComponent implements OnInit {
 
   modalForDelete(paramForDelete: Param, template: TemplateRef<any>): void {
 
+    debugger;
+    
     this.newItem = false;
     this.edit = false;
     this.delete = true;
@@ -85,6 +91,18 @@ export class ParamsComponent implements OnInit {
     const startItem = (page - 1) * this.itemsPerPage;
     const endItem = page * this.itemsPerPage;
     this.paramsPage = this.params.slice(startItem, endItem);
+
+  }
+
+  deleteParam(): void{
+    debugger;
+    this.paramsService.deleteParams(this.selectedParam);
+  }
+
+  acceptedCreateOrUpdate(){
+    debugger;
+    this.bsModalRef.hide();
+    //Creado o actualizado el parámetro ya actualizaré la vista o carganod todo o seleccionando del array y quitándolo
 
   }
 }

@@ -10,11 +10,24 @@ import { ParamsService } from 'src/app/services/params/params.service';
 export class ParamComponent implements OnInit {
   @Input() param: Param;
   @Input() edit: boolean;
-  
+
+  @Output() accept: EventEmitter<Param> = new EventEmitter();
+  @Output() cancel: EventEmitter<string> = new EventEmitter();
+
 
   constructor(private paramsService: ParamsService) {
 
-    if (!this.param) {// si no me viene el parámetro de entrada lo inicializo para que no falle la vista
+
+
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.edit) {// caso de creación
       this.param = {
         descripcion: '',
         aplicacion: '',
@@ -24,16 +37,47 @@ export class ParamComponent implements OnInit {
         nombre: ''
       };
     }
-
-
   }
 
-  ngOnInit(): void {
-    
+  clickOnAccept() {
+
+    if (this.edit) {
+      this.update();
+    } else {
+      this.create();
+    }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    
+  clickOnCancel() {
+
+    this.cancel.emit("");
+  }
+
+
+  create(){
+    this.paramsService.createParams(this.param).subscribe(
+      data => {
+        
+        this.param = data;
+        this.accept.emit(this.param);
+      },error => {
+          // do something
+          this.accept.emit(this.param);
+      }
+    )
+  }
+
+  update(){
+    this.paramsService.updateParams(this.param).subscribe(
+      data => {
+        
+        this.param = data;
+        this.cancel.emit('');
+      },error => {
+          // do something
+          this.cancel.emit('');
+      }
+    )
   }
 
 }

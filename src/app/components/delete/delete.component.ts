@@ -16,11 +16,12 @@ export class DeleteComponent implements OnInit {
   }
 
   clickOnAccept(): void{
-    this.accept.emit();
+    debugger;
+    this.accept.emit('');
   }
 
   clickOnCancel(): void{
-    this.cancel.emit();
+    this.cancel.emit('');
   }
 
 }
