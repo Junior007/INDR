@@ -13,16 +13,16 @@ export class ParamsService {
   }
       //
     getParams(): Observable<Param[]> {
-      return this.http.get<Param[]>('Params');
+      return this.http.get<Param[]>('params');
       // .pipe(map((data: any[]) => data.map((item: any) => new Value(item.id, item.name))));
     }
 
     deleteParams(param: Param): any {
-      return this.http.post('params/delete', param);
+      return this.http.post('params/delete/nombre=' + param.nombre, param);
     }
 
-    updateParams(param: Param): any {
-      return this.http.post('params/update', param);
+    updateParams(param: Param): Observable<Param> {
+      return this.http.post<Param>('params/update', param);
     }
     createParams(param: Param): Observable<Param> {
       return this.http.post<Param>('params/create', param);

@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DeleteComponent implements OnInit {
   @Input() message: string;
+  
   @Output() accept: EventEmitter<string> = new EventEmitter();
   @Output() cancel: EventEmitter<string> = new EventEmitter();
 
@@ -21,6 +22,7 @@ export class DeleteComponent implements OnInit {
   }
 
   clickOnCancel(): void{
+    debugger;
     this.cancel.emit('');
   }
 
